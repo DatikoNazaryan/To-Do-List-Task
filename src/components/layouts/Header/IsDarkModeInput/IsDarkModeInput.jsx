@@ -5,9 +5,9 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 import { isDarkMode } from '../../../../store/slices/theme';
 
-import styles from './HeaderMenu.module.scss';
+import styles from './IsDarkModeInput.module.scss'
 
-function HeaderMenu() {
+function IsDarkModeInpute() {
   const dispatch = useDispatch();
   const isDarkThemeActive = useSelector(state => state.isDarkTheme.isDarkThemeActive);
 
@@ -34,4 +34,4 @@ function HeaderMenu() {
   );
 }
 
-export default HeaderMenu;
+export default IsDarkModeInpute;

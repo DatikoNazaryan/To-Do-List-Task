@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import cx from 'classnames';
 
 import Popup from '../../common/Popup/Popup.jsx';
-import HeaderMenu from './HeaderMenu/HeaderMenu.jsx';
+import IsDarkModeInpute from './IsDarkModeInput/IsDarkModeInput.jsx';
 
 import styles from './Header.module.scss';
 
@@ -39,7 +39,7 @@ function Header() {
                         </span>
                      </button>
                   </div>
-                  <HeaderMenu />
+                  <IsDarkModeInpute />
             </header>
          {
              isPopupVisible && (

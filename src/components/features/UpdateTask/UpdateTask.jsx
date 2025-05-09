@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateTask } from '../../../store/slices/taskSlice';
-import { taskSort } from '../../../store/slices/taskSlice';
 
 import styles from './UpdateTask.module.scss';
 
@@ -17,7 +16,6 @@ function UptadeTask({ onClose, title, description, id, sortBy }) {
         e.preventDefault();
 
         dispatch(updateTask({id: id, updateValues : updateValues}));
-        // dispatch(taskSort(sortBy));
         onClose();
     };
 

@@ -34,8 +34,6 @@ function TaskList({ sortBy , filterBy }) {
         <SpinnerCircular size={50} color="blue" />
       </div>
     );
-
-    console.log(taskList);
     
     return(
         sortedTaskList.length ? 
