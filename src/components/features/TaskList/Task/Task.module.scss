@@ -1,0 +1,63 @@
+.container{
+    width: 100%;
+    padding: 0 10px;
+    max-width: 1190px;
+    margin: 0 auto; 
+}
+
+.task{
+    position: relative;
+    width: 100%;
+    background-color: #f5f9fa;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &:hover {
+       -webkit-box-shadow: -9px 21px 8px 6px rgba(18, 26, 32, 0.2);
+        -moz-box-shadow: -9px 21px 8px 6px rgba(18, 26, 32, 0.2);
+        box-shadow: -9px 21px 8px 6px rgba(18, 26, 32, 0.2);
+    }
+}
+
+.isDarkMode{
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+.checkBox {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+.date {
+    margin-right: 30px;
+}
+
+
+.checkboxInput {
+    margin-right: 5px;
+}
+
+.taskDone{
+    animation: changeColor 5s infinite alternate;
+}
+
+.taskDoneDark{
+     animation: changeDarkColor 5s infinite alternate;
+}
+
+@keyframes changeColor {
+    0%   { background-color: #ff9999; }
+    50%  { background-color: #99ccff; }
+    100% { background-color: #99ff99; }
+  }
+
+  @keyframes changeDarkColor {
+    0%   { background-color: #fc7d0b; }
+    50%  { background-color: #bb86fc; }
+    100% { background-color: #1e1e2f; }
+  }

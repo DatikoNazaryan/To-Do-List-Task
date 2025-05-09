@@ -1,0 +1,38 @@
+.toggleThemeBtn {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background-color: #dedede;
+  border: none;
+  border-radius: 50px;
+  transition: background-color 0.14s;
+  margin-right: 5px;
+  cursor: pointer;
+
+  &:before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: #777;
+    border-radius: 50%;
+    transition: all 0.14s;
+  }
+
+  &Active {
+    background-color: #777;
+
+    &:before {
+      background-color: #dedede;
+      transform: translateX(100%);
+    }
+  }
+}
+
+.menuWrapper {
+    display: inline-block;
+    margin: auto 0;
+}
