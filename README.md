@@ -16,3 +16,33 @@ Includes optional features like filtering, sorting, and data persistence via loc
   - Save tasks in localStorage
   - Filter by status (All / Pending / Done)
   - Sort by creation date or alphabetically
+    
+src/
+├── components/
+│ ├── TaskList.jsx
+│ ├── TaskItem.jsx
+│ ├── TaskForm.jsx
+│ └── FilterSortControls.jsx
+├── hooks/
+│ └── useTasks.js (localStorage logic)
+├── styles/
+│ └── app.css or Tailwind config
+├── App.jsx
+└── main.jsx
+
+---
+
+## 🛠️ Tech Stack
+
+- ⚛️ React
+- 🎨 Tailwind CSS (or styled-components / SCSS — depending on your choice)
+- 💾 localStorage (for data persistence)
+
+---
+
+## 📦 Installation
+
+1. Clone the repo:
+```bash
+git clone https://github.com/your-username/task-manager.git
+cd task-manager
