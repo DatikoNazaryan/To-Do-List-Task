@@ -5,6 +5,7 @@ import fakeFetch from '../../helpers/fakeFatch';
 const initialState = {
     taskList: [],
     sortedTaskList: [],
+    searchTaskList: [],
     loading: true,
     errore: null,
 };
@@ -25,6 +26,10 @@ const taskSlice = createSlice({
     name: 'task',
     initialState,
     reducers: {
+        searchTask(state, action) {
+            const newSearchTaskList = state.taskList.filter(item => (item.title.toLowerCase().includes(action.payload.toLowerCase()) || item.description.toLowerCase().includes(action.payload.toLowerCase())));
+            state.searchTaskList = newSearchTaskList;
+        },
         changeDoneTask(state, action) {
             const newTaskList = state.taskList.map(task => {
                 if(task.id === action.payload) {
@@ -36,11 +41,13 @@ const taskSlice = createSlice({
                 return task;
             });
             state.taskList = newTaskList;
+            state.searchTaskList = newTaskList;
             localStorage.setItem("tasks", JSON.stringify(newTaskList));
         },
         deleteTask(state, action) {
             const newTaskList = state.taskList.filter(task => task.id !== action.payload);
             state.taskList = newTaskList;
+            state.searchTaskList = newTaskList
             localStorage.setItem("tasks", JSON.stringify(newTaskList));
         },
         addTaskDescription(state, action) {
@@ -67,6 +74,7 @@ const taskSlice = createSlice({
                 return task;
             });
             state.taskList = updatedTaskList;
+            state.searchTaskList = updatedTaskList;
             localStorage.setItem("tasks", JSON.stringify(updatedTaskList));
         },
         taskSort(state, action) {
@@ -83,6 +91,7 @@ const taskSlice = createSlice({
               state.error = null;
               state.loading = false;
               state.taskList = action.payload;
+              state.searchTaskList = action.payload;
            })
            .addCase(fetchTasksDataAsync.rejected, (state, action) => {
               state.error = action.payload;
@@ -91,6 +100,6 @@ const taskSlice = createSlice({
     }
 });
 
-export const { changeDoneTask, deleteTask, updateTask, taskSort } = taskSlice.actions;
+export const { searchTask, changeDoneTask, deleteTask, updateTask, taskSort } = taskSlice.actions;
 
 export default taskSlice.reducer;

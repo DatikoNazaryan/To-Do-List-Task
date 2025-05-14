@@ -18,17 +18,16 @@ function IsDarkModeInpute() {
   }
 
   return (
-    <div className={styles.menuWrapper}>
+    <div className={styles.menuWrapper} onClick={handleToggleThemeBtnClick}>
       <button 
           type="button"
           className={cx(styles.toggleThemeBtn,{
             [styles.toggleThemeBtnActive]: isDarkThemeActive
           })}
-          onClick={handleToggleThemeBtnClick}
         />
         { isDarkThemeActive ? 
-            <FaMoon size={20} color='blue' /> :
-            <FaSun size={20} color='blue' />
+            <FaMoon size={20} color='#ffffff' /> :
+            <FaSun size={20} color="#fcd34d" />
         }
     </div>
   );

@@ -7,37 +7,59 @@ import { SpinnerCircular  } from 'spinners-react';
 import { taskSort } from '../../../store/slices/taskSlice';
 import { sortData } from '../../../helpers/sortData';
 
-import styles from './TaskList.module.scss';
+import styled from 'styled-components';
 
-function TaskList({ sortBy , filterBy }) {
+export const TaskListItems = styled.div`
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 auto;
+`;
+
+export const Spinner = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NotTask = styled.div`
+  text-align: center;
+  font-size: 30px;
+`;
+
+function TaskList({ sortBy , filterBy, sortTo }) {
     const dispatch = useDispatch();
     const taskList = useSelector(store => store.tasks.taskList);
+    const searchTaskList = useSelector(store => store.tasks.searchTaskList);
     const sortedTaskList = useSelector(store => store.tasks.sortedTaskList);
     const loading = useSelector(store => store.tasks.loading);
 
-    const sortTask = (sort) => {
+    const sortTask = (sort, sortByAscOrDesc) => {
         if(filterBy === "All"){
-          dispatch(taskSort(sortData(taskList, sort)));
+          dispatch(taskSort(sortData(searchTaskList, sort, sortByAscOrDesc)));
         } else if (filterBy === "Pending") {
-          dispatch(taskSort(sortData(taskList.filter(task => !task.isDone), sort)));
+          dispatch(taskSort(sortData(searchTaskList.filter(task => !task.isDone), sort, sortByAscOrDesc)));
         } else if (filterBy === "Done") {
-          dispatch(taskSort(sortData(taskList.filter(task => task.isDone), sort)));
+          dispatch(taskSort(sortData(searchTaskList.filter(task => task.isDone), sort, sortByAscOrDesc)));
         }
     };
 
     useEffect(() => {
-      sortTask(sortBy);
-    }, [sortBy, taskList, filterBy]);
+      sortTask(sortBy, sortTo);
+    }, [sortBy, filterBy, sortTo, searchTaskList]);
 
     if(loading) return (
-      <div className={styles.spiner}>
-        <SpinnerCircular size={50} color="blue" />
-      </div>
+      <Spinner>
+        <SpinnerCircular size={50} color="#99ff99" />
+      </Spinner>
     );
     
     return(
         sortedTaskList.length ? 
-        <div className={styles.taskList}>
+        <TaskListItems>
           {
             sortedTaskList.map(task => (
               <Task
@@ -48,11 +70,12 @@ function TaskList({ sortBy , filterBy }) {
                 id={task.id}
                 isDone={task.isDone}
                 sortBy={sortBy}
+                timeAgoDate={task.sortDate}
               />
            ))
           }
-        </div>  :
-        <p className={styles.notTask}>There are no task in the system yet</p>
+        </TaskListItems>  :
+        <NotTask>There are no task in the system yet</NotTask>
     );
 }
 

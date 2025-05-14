@@ -7,7 +7,7 @@ import Content from '../components/layouts/Content/Content';
 
 import { fetchTasksDataAsync } from '../store/slices/taskSlice';
 
-import './App.css'
+import './App.css';
 
 
 function App() {

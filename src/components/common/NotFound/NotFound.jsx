@@ -1,11 +1,18 @@
-import styles from './NotFound.module.scss';
+import styled from 'styled-components';
+
+const NotFoundTitle = styled.h1`
+  margin-top: 20rem;
+  color: #000;
+  text-align: center;
+`;
 
 function NotFound() {
   return (
-    <h1 className={styles.container}>
-      404 | Not Found!
-    </h1>
+    <NotFoundTitle>
+      <h1>404 | Not Found!</h1>
+    </NotFoundTitle>
   );
 }
+
 
 export default NotFound;

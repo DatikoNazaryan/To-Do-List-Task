@@ -1,0 +1,96 @@
+import styled from 'styled-components';
+
+export const StyledHeader = styled.header`
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const HeaderBlock = styled.div`
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
+
+export const Title = styled.h1`
+   color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
+`;
+
+export const StyleButton = styled.button`
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#333' : '#fff')};
+  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#121212')};
+  border-radius: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transition: background-color 0.5s ease, font-weight 0.5s ease;
+
+  &:hover {
+    background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#555' : '#ddd')};
+  }
+    
+`;
+
+export const ButtonDecor = styled.span`
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#ddd')};
+  transition: background-color 0.5s ease, font-weight 0.5s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  z-index: 0;
+`;
+
+export const ButtonContent = styled.span`
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+`;
+
+export const ButtonIcon = styled.span`
+  width: 48px;
+  height: 100%;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#ddd')};
+  transition: background-color 0.5s ease, font-weight 0.5s ease;
+  display: grid;
+  place-items: center;
+  margin-right: 10px;
+`;
+
+export const ButtonText = styled.span`
+  display: inline-block;
+  transition: color 0.2s;
+  padding: 2px 1.5rem 2px;
+  padding-left: 0.75rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+
+  &:hover {
+    color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
+  }
+`;
+
+export const ButtonHoverEffect = styled(StyleButton)`
+
+  &:hover ${ButtonDecor} {
+    transform: translateX(0);
+  }
+`;

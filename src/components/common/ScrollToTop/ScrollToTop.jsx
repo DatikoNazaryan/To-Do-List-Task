@@ -1,9 +1,31 @@
 import { useSelector } from 'react-redux';
-import cx from 'classnames';
+import styled, { css } from 'styled-components';
 
 import { FaArrowUp } from 'react-icons/fa';
 
-import styles from './ScrollToTop.module.scss';
+const ScrollToTopButton = styled.button`
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 30px;
+  right: 30px;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  background-color: #fff;
+
+  &:hover{
+   background-color: #f5f7fa;
+  }
+
+  &.show {
+    display: block;
+  }
+`;
 
 function ScrollToTop({ visible }) {
   const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
@@ -16,16 +38,10 @@ function ScrollToTop({ visible }) {
   };
 
   return (
-    <button
-      onClick={scrollToTop}
-      className={cx(styles.scrollToTop, {
-          [styles.show]: visible,
-          [styles.isDarkMode]: isDarkMode,
-      })}
-      aria-label="Scroll to top"
-    >
-      <FaArrowUp />
-    </button>
+    <ScrollToTopButton onClick={scrollToTop} isDarkMode={isDarkMode} className="show">
+        <FaArrowUp color='#000000' />
+    </ScrollToTopButton>
+      
   );
 }
 

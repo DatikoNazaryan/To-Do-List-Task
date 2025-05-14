@@ -1,20 +1,27 @@
 import FilterBy from './FilterBy/FilterBy';
 import SortBy from './SortBy/SortBy';
 
-import styles from './SortByAndFiltreBy.module.scss';
+import styled from 'styled-components';
 
-function SortByAndFilterBy({ handleChangeFilterBy, sortBy, handleChangeSortBy, filterBy }) {
+const SortByAndFilterByDiv = styled.div`
+    margin: 20px auto 40px;
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+`;
+
+function SortByAndFilterBy({ handleChangeFilterBy, sortBy, handleChangeSortBy, handleChangeSortTo }) {
     return(
-        <div className={styles.sortByAndFilterBy}>
+        <SortByAndFilterByDiv>
             <FilterBy
-              filterBy={filterBy}
               handleChangeFilterBy={handleChangeFilterBy}
             />
             <SortBy 
               sortBy={sortBy} 
               handleChangeSortBy={handleChangeSortBy}
+              handleChangeSortTo={handleChangeSortTo}
             />
-        </div>
+        </SortByAndFilterByDiv>
     );
 }
 

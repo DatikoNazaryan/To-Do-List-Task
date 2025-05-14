@@ -1,13 +1,12 @@
-import { useState, Suspense,lazy } from 'react';
+import { useState, useEffect, Suspense,lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import cx from 'classnames';
+import { OpenManu, IconBtn, Manu } from './MenuStyled';
 
 import Popup from '../Popup/Popup';
 
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FiMoreVertical  } from 'react-icons/fi';
 import { deleteTask } from '../../../store/slices/taskSlice';
-
-import styles from './Menu.module.scss';
 
 const UptadeTask = lazy(() => import('../../features/UpdateTask/UpdateTask'));
 
@@ -26,40 +25,39 @@ function Menu ({id, title, description, sortBy}) {
       setOpenManu(false);
     };
 
+    useEffect(() => {
+        if (isPopupVisible) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+    
+        return () => {
+          document.body.style.overflow = 'auto';
+        };
+      }, [isPopupVisible]);
+
   const handleDelete = () => {
     dispatch(deleteTask(id));
   };
 
     return(
          <>
-            <div
-            className={cx(styles.openManu, {
-                    [styles.chackedMenu]: openManu,
-                  })} 
-            onClick={() => setOpenManu(prev => !prev)}
-            >
-                <div className={cx(styles.manuIcon, {
-                  [styles.isDarkMode]: isDarkMode,
-                })}></div>
-                <div className={cx(styles.manuIcon, {
-                  [styles.isDarkMode]: isDarkMode,
-                })}></div>
-                <div className={cx(styles.manuIcon, {
-                  [styles.isDarkMode]: isDarkMode,
-                })}></div>
-            </div>
-            {
-              openManu && (
-                <div className={styles.manu}>
-                  <button className={styles.iconBtn} onClick={togglePopupVisibility}>
-                     <FaEdit size={20} color="blue" title="Edit" />
-                  </button>
-                  <button className={styles.iconBtn} onClick={handleDelete}>
-                      <FaTrash size={20} color="red" title="Delete" />
-                  </button>
-                </div>
-              )
-            }
+             <div>
+              <OpenManu onClick={() => setOpenManu(!openManu)}>
+                <FiMoreVertical
+                  size={20}
+                  color={isDarkMode ? '#bbb' : '#333'}
+                  style={{ transition: 'color 0.2s ease' }}
+                />
+              </OpenManu>
+                {openManu && (
+                  <Manu $isDarkMode={isDarkMode}>
+                    <IconBtn $isDarkMode={isDarkMode} onClick={togglePopupVisibility}><FaEdit size={20} color="blue" title="Edit" />Edit</IconBtn>
+                    <IconBtn $isDarkMode={isDarkMode} onClick={handleDelete}><FaTrash size={20} color="red" title="Delete" />Delete</IconBtn>
+                  </Manu>
+                )}
+             </div>
             {
              isPopupVisible && (
              <Popup onClose={togglePopupVisibility}>

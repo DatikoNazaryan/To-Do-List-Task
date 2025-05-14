@@ -2,28 +2,57 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import addDataLocalStorage from '../../../helpers/addTasksLocalStorage';
-import { getCarsDate } from '../../../helpers/getTasksDate';
 import { fetchTasksDataAsync } from '../../../store/slices/taskSlice';
+import dayjs from 'dayjs';
 
-import styles from './addTaskForm.module.scss';
-
-
+import {
+  Form,
+  StyledInput,
+  StyledTextarea,
+  ButtonBlock,
+  StyledButton,
+  ErrorText
+} from './AddTaskFormStyled';
 
 function addTaskForm({ onClose }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
     const [ values, setValues ] = useState({
         title: "",
         description: "",
+    });
+    const [error, setError] = useState({
+      titleErr: "",
+      descriptionErr: "",
     });
     const taskList = useSelector(store => store.tasks.taskList);
 
     const handleTaskDataSubmit = (e) => {
         e.preventDefault();
 
+        if (values.description.length > 1024) {
+          setError(prev => ({
+            ...prev,
+            descriptionErr: 'Maximum character limit of 1024 exceeded!'
+          }));
+          return
+        } else if (values.title.length > 255){
+            setError(prev => ({
+            ...prev,
+            titleErr: 'Maximum character limit of 255 exceeded!'
+          }));
+          return
+        } else {
+          setError({
+            titleErr: "",
+            descriptionErr: "",
+          });
+        }
+
         addDataLocalStorage("tasks", {
             ...values,
-            creationDate: getCarsDate(),
-            sortData: Date(),
+            creationDate: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+            sortDate: Date(),
             isDone: false,
             id: taskList.length ? taskList[taskList.length - 1].id + 1 : 1 ,
         });
@@ -34,36 +63,27 @@ function addTaskForm({ onClose }) {
 
 
     return(
-        <form className={styles.form} onSubmit={(e) => handleTaskDataSubmit(e)}>
-            <div>
-               <label htmlFor="title">Title</label><br></br>
-               <input id="title" className={styles.input} type='text' onChange={(e) => (
+      <Form onSubmit={(e) => handleTaskDataSubmit(e)}>
+         {error.titleErr && <ErrorText>{error.titleErr}</ErrorText>}
+          <StyledInput $isDarkMode={isDarkMode} maxLength="255" type="text" placeholder="Enter name" onChange={(e) => (
                   setValues({
                     ...values,
                     title: e.target.value,
                   })
                )} />
-            </div>
-             <div>
-                <label htmlFor="description">Description</label><br></br>
-                <textarea  id="description"
-                  onChange={(e) => (
+          {error.descriptionErr && <ErrorText>{error.descriptionErr}</ErrorText>}
+          <StyledTextarea $isDarkMode={isDarkMode} placeholder="Enter description"
+            onChange={(e) => (
                     setValues({
                       ...values,
                       description: e.target.value,
                     })
                  )}
-                ></textarea>
-             </div>
-             <div className={styles.btnBlock}>
-                <button 
-                  disabled={!values.description || !values.title ? true : false}
-                  className={styles.btn} 
-                  type='submit'>
-                   Create
-                </button>
-             </div>
-        </form>
+          />
+          <ButtonBlock>
+            <StyledButton $isDarkMode={isDarkMode} disabled={!values.title.length ? true : false} type="submit">Create</StyledButton>
+          </ButtonBlock>   
+       </Form>
     );
 }
 
