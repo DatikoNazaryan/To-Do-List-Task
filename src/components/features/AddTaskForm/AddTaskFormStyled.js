@@ -13,6 +13,8 @@ export const StyledInput = styled.input`
   border-radius: 10px;
   border: 0.5px solid hsl(0, 0%, 80%);
   padding-left: 7px;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#fff')};
+  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
 
   &:hover {
     border-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#99ff99')};
@@ -33,6 +35,8 @@ export const StyledTextarea = styled.textarea`
   padding-top: 3px;
   resize: none;
   border: 0.5px solid hsl(0, 0%, 80%);
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#fff')};
+  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
 
   &:hover {
     border-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#99ff99')};
@@ -55,7 +59,8 @@ export const StyledButton = styled.button`
   padding: 8px 30px;
   margin: 5px;
   border-radius: 15px;
-  background-color: #ccc;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#ccc')};
+  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')}; 
   border: none;
   cursor: pointer;
 
@@ -65,12 +70,8 @@ export const StyledButton = styled.button`
 
   &:disabled {
     border: 1px solid #ccc;
-    background-color: #f5f5f5;
+    background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f5f5')};
     cursor: not-allowed;
-
-    &:hover {
-      background-color: #f5f5f5;
-    }
   }
 `;
 

@@ -21,12 +21,22 @@ const AddTaskForm = lazy(() => import('../../features/AddTaskForm/addTaskForm.js
 function Header() {
   const isDarkMode = useSelector((store) => store.isDarkTheme.isDarkThemeActive);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const togglePopupVisibility = (ev) => {
     if (ev) ev.preventDefault();
     
     setIsPopupVisible((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isPopupVisible) {
@@ -42,7 +52,7 @@ function Header() {
 
   return (
     <>
-      <StyledHeader>
+      <StyledHeader isScrolled={scrolled} $isDarkMode={isDarkMode}>
         <HeaderBlock>
           <div>
             <Title $isDarkMode={isDarkMode}>Basic Task List Template</Title>

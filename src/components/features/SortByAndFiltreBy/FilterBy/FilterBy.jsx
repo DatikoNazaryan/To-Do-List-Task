@@ -6,7 +6,7 @@ export const StyledSelect = styled.select`
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
+  background-color: ${({ $isDarkMode, $isDone }) => ($isDarkMode ? $isDone ? '#fc7d0b' : '#444' : $isDone ? '#99ff99' : '#f5f7fa')};
   color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#333')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   font-size: 16px;

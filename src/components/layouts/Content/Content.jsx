@@ -13,7 +13,6 @@ const Main = styled.div`
   height: 100%;
   padding-bottom: 100px;
   margin-top: 100px;
-  position: relative;
 `;
 
 const Container = styled.div`

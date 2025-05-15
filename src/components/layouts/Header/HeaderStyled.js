@@ -2,14 +2,27 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   padding: 10px 20px;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#333' : '#fff')};
+  display: flex;
+  justify-content: space-around;
+  transition: background-color 0.5s ease, font-weight 0.5s ease;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 2;
-  background-color: transparent;
-  display: flex;
-  justify-content: space-around;
+  padding: 15px 30px;
+  z-index: 999;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  color: white;
+  background: ${({ isScrolled }) =>
+    isScrolled ? 'rgba(0, 0, 0, 0.3)' : 'transparent'};
+  backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
+  -webkit-backdrop-filter: ${({ isScrolled }) =>
+    isScrolled ? 'blur(10px)' : 'none'};
+  box-shadow: ${({ isScrolled }) =>
+    isScrolled ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none'};
+  border-bottom: ${({ isScrolled }) =>
+    isScrolled ? '1px solid rgba(255, 255, 255, 0.2)' : 'none'};
 `;
 
 export const HeaderBlock = styled.div`

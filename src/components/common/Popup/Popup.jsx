@@ -1,4 +1,5 @@
 import { createPortal } from 'react-dom';
+import { useSelector } from 'react-redux';
 import { FaTimes } from 'react-icons/fa';
 
 
@@ -14,7 +15,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 3
+  z-index: 3;
 `;
 
 const Content = styled.div`
@@ -22,7 +23,7 @@ const Content = styled.div`
   overflow: hidden;
   width: 60%;
   height: 60vh;
-  background-color: #fff;
+  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#333' : '#fff')};
   border-radius: 12px;
   padding: 4.8rem;
   display: flex;
@@ -45,11 +46,12 @@ const CloseIcon = styled.svg`
 `;
 
 const Popup = ({ children, onClose, className = '' }) => {
+      const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
   const popupPlaceholder = document.getElementById('popupPlaceholder');
 
   const element = (
     <Container onClick={onClose}>
-      <Content onClick={(e) => e.stopPropagation()} className={className}>
+      <Content $isDarkMode={isDarkMode} onClick={(e) => e.stopPropagation()} className={className}>
         {children}
         <CloseIcon onClick={onClose}>
           <FaTimes

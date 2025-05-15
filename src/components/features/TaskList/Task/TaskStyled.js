@@ -5,7 +5,6 @@ export const Container = styled.div`
   padding: 0;
   max-width: 1190px;
   margin: 0 auto;
-  position: relative;
 `;
 
 export const TaskTable = styled.table`
@@ -40,12 +39,11 @@ export const Th = styled.th`
   border-bottom: 1px solid #e0e6ed;
 `;
 
-export const Tbody = styled.tbody`
-  tr {
+export const Tr = styled.tr`
     transition: background-color 0.2s ease;
-    background-color: ${({ $isDone }) => ($isDone && '#99ff99')};
+    background-color: ${({ $isDone, $isDarkMode }) => ($isDone ?  $isDarkMode ? '#fc7d0b' : '#99ff99' : 'transparent')};
     transition: background-color 0.5s ease, font-weight 0.5s ease;
-  }
+    position: relative;
 `;
 
 export const Td = styled.td`
@@ -101,7 +99,6 @@ export const DarkTaskTable = styled(TaskTable)`
     td {
       color: #ccc;
       border-bottom: 1px solid #444;
-      background-color: ${({ $isDone }) => ($isDone && '#fc7d0b')};
 
       &.description {
         white-space: normal;
@@ -124,3 +121,5 @@ export const DarkTaskTable = styled(TaskTable)`
     }
   }
 `;
+
+

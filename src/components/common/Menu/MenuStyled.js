@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 export const OpenManu = styled.div`
   position: absolute;
-  right: 5px;
-  top: 5px;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,4 +58,5 @@ export const Manu = styled.div`
   box-shadow: -7px 4px 8px 0px rgba(34, 60, 80, 0.2);
   border-radius: 15px;
   z-index: 1;
+  display: block;
 `;

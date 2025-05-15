@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense,lazy } from 'react';
+import { useState, useEffect, Suspense,lazy, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { OpenManu, IconBtn, Manu } from './MenuStyled';
 
@@ -15,6 +15,7 @@ function Menu ({id, title, description, sortBy}) {
    const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
   const [ openManu, setOpenManu ] = useState(false);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const menuRef = useRef(null);
 
    const togglePopupVisibility = (ev) => {
       if(ev) {
@@ -37,27 +38,42 @@ function Menu ({id, title, description, sortBy}) {
         };
       }, [isPopupVisible]);
 
+    useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenManu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);  
+
   const handleDelete = () => {
     dispatch(deleteTask(id));
   };
 
     return(
          <>
-             <div>
-              <OpenManu onClick={() => setOpenManu(!openManu)}>
+              <div>
+                <OpenManu ref={menuRef}>
                 <FiMoreVertical
+                  onClick={() => setOpenManu(!openManu)}
                   size={20}
                   color={isDarkMode ? '#bbb' : '#333'}
                   style={{ transition: 'color 0.2s ease' }}
                 />
-              </OpenManu>
                 {openManu && (
-                  <Manu $isDarkMode={isDarkMode}>
-                    <IconBtn $isDarkMode={isDarkMode} onClick={togglePopupVisibility}><FaEdit size={20} color="blue" title="Edit" />Edit</IconBtn>
-                    <IconBtn $isDarkMode={isDarkMode} onClick={handleDelete}><FaTrash size={20} color="red" title="Delete" />Delete</IconBtn>
-                  </Manu>
+                    <Manu $isDarkMode={isDarkMode}>
+                      <IconBtn $isDarkMode={isDarkMode} onClick={togglePopupVisibility}><FaEdit size={20} color="blue" title="Edit" />Edit</IconBtn>
+                      <IconBtn $isDarkMode={isDarkMode} onClick={handleDelete}><FaTrash size={20} color="red" title="Delete" />Delete</IconBtn>
+                    </Manu>
                 )}
-             </div>
+              </OpenManu>
+              </div>           
             {
              isPopupVisible && (
              <Popup onClose={togglePopupVisibility}>

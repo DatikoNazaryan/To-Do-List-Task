@@ -32,11 +32,19 @@ const taskSlice = createSlice({
         },
         changeDoneTask(state, action) {
             const newTaskList = state.taskList.map(task => {
-                if(task.id === action.payload) {
-                    return {
+                if(task.id === action.payload.id) {
+                    if(action.payload.status === "Done"){
+                        return {
                         ...task,
-                        isDone: !task.isDone
-                    };
+                        isDone: true
+                       };
+                    } else if(action.payload.status === "Pending") {
+                        return {
+                        ...task,
+                        isDone: false
+                       };
+                    }
+                    
                 }
                 return task;
             });

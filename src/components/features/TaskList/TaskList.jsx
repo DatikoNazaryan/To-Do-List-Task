@@ -6,6 +6,7 @@ import { SpinnerCircular  } from 'spinners-react';
 
 import { taskSort } from '../../../store/slices/taskSlice';
 import { sortData } from '../../../helpers/sortData';
+import { DarkTaskTable ,Thead, Th, TaskTable, Container } from './Task/TaskStyled';
 
 import styled from 'styled-components';
 
@@ -32,7 +33,7 @@ export const NotTask = styled.div`
 
 function TaskList({ sortBy , filterBy, sortTo }) {
     const dispatch = useDispatch();
-    const taskList = useSelector(store => store.tasks.taskList);
+    const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
     const searchTaskList = useSelector(store => store.tasks.searchTaskList);
     const sortedTaskList = useSelector(store => store.tasks.sortedTaskList);
     const loading = useSelector(store => store.tasks.loading);
@@ -60,20 +61,62 @@ function TaskList({ sortBy , filterBy, sortTo }) {
     return(
         sortedTaskList.length ? 
         <TaskListItems>
-          {
-            sortedTaskList.map(task => (
-              <Task
-                key={task.id}
-                title={task.title}
-                description={task.description}
-                date={task.creationDate}
-                id={task.id}
-                isDone={task.isDone}
-                sortBy={sortBy}
-                timeAgoDate={task.sortDate}
-              />
-           ))
+          <Container>
+            {  isDarkMode ? 
+          <DarkTaskTable>
+                    <Thead>
+                      <tr>
+                        <Th>Task Name</Th>
+                        <Th>Description</Th>
+                        <Th>Status</Th>
+                        <Th>Start Date</Th>
+                      </tr>
+                    </Thead>
+                    <tbody>
+                           {
+                            sortedTaskList.map(task => (
+                                <Task
+                                  key={task.id}
+                                  title={task.title}
+                                  description={task.description}
+                                  date={task.creationDate}
+                                  id={task.id}
+                                  isDone={task.isDone}
+                                  sortBy={sortBy}
+                                  timeAgoDate={task.sortDate}
+                                />
+                            ))
+                          } 
+                    </tbody>                  
+                  </DarkTaskTable> : 
+                  <TaskTable>
+                            <Thead>
+                              <tr>
+                                <Th>Task Name</Th>
+                                <Th>Description</Th>
+                                <Th>Status</Th>
+                                <Th>Start Date</Th>
+                              </tr>
+                            </Thead>
+                       <tbody>
+                           {
+                            sortedTaskList.map(task => (
+                                <Task
+                                  key={task.id}
+                                  title={task.title}
+                                  description={task.description}
+                                  date={task.creationDate}
+                                  id={task.id}
+                                  isDone={task.isDone}
+                                  sortBy={sortBy}
+                                  timeAgoDate={task.sortDate}
+                                />
+                            ))
+                          } 
+                    </tbody>  
+                    </TaskTable>
           }
+          </Container>
         </TaskListItems>  :
         <NotTask>There are no task in the system yet</NotTask>
     );
