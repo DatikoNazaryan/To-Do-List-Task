@@ -10,12 +10,16 @@ function SortBy({sortBy, handleChangeSortBy, handleChangeSortTo}) {
         <Sort>
             <div>
                 <h3>Sort By</h3>
-                <StyledSelect $isDarkMode={isDarkMode} onChange={(e) => handleChangeSortBy(e)}>
+                <StyledSelect 
+                   $isdarkmode={isDarkMode ? 'true' : undefined} 
+                   onChange={(e) => handleChangeSortBy(e)}
+                   defaultValue="Date"
+                >
                   <option value="Date">Date</option>
                   <option value="Alphabetically">Alphabetically</option>
                 </StyledSelect>
            </div>
-                <RadioInputs $isDarkMode={isDarkMode}>
+                <RadioInputs $isdarkmode={isDarkMode ? 'true' : undefined}>
                   <Radio>
                     <HiddenRadio
                       type="radio"
@@ -24,7 +28,7 @@ function SortBy({sortBy, handleChangeSortBy, handleChangeSortTo}) {
                       checked={sortBy === "asc"}
                       onChange={(e) => handleChangeSortTo(e)} 
                     />
-                    <RadioItem isDarkMode={isDarkMode} selected={sortBy === "asc"}>Asc</RadioItem>
+                    <RadioItem $isdarkmode={isDarkMode ? 'true' : undefined} selected={sortBy === "asc"}>Asc</RadioItem>
                   </Radio>
                   <Radio>
                     <HiddenRadio
@@ -34,7 +38,7 @@ function SortBy({sortBy, handleChangeSortBy, handleChangeSortTo}) {
                       checked={sortBy === "desc"}
                       onChange={(e) => handleChangeSortTo(e)} 
                     />
-                    <RadioItem isDarkMode={isDarkMode} selected={sortBy === "desc"}>Desc</RadioItem>
+                    <RadioItem $isdarkmode={isDarkMode ? 'true' : undefined} selected={sortBy === "desc"}>Desc</RadioItem>
                   </Radio>
                 </RadioInputs>
         </Sort>

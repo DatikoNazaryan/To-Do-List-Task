@@ -41,7 +41,7 @@ export const Th = styled.th`
 
 export const Tr = styled.tr`
     transition: background-color 0.2s ease;
-    background-color: ${({ $isDone, $isDarkMode }) => ($isDone ?  $isDarkMode ? '#fc7d0b' : '#99ff99' : 'transparent')};
+    background-color: ${({ $isDone, $isdarkmode }) => ($isDone ?  $isdarkmode ? '#fc7d0b' : '#99ff99' : 'transparent')};
     transition: background-color 0.5s ease, font-weight 0.5s ease;
     position: relative;
 `;

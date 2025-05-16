@@ -29,12 +29,12 @@ export const IconBtn = styled.button`
   height: 40px;
   gap: 5px;
   border: none;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
-  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#444' : '#f5f7fa')};
+  color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#000')};
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#99ff99')};
+    background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#fc7d0b' : '#99ff99')};
   }
 
   ${(props) =>
@@ -47,7 +47,7 @@ export const IconBtn = styled.button`
 export const Manu = styled.div`
   position: absolute;
   width: 100px;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#444' : '#f5f7fa')};
   right: 0;
   top: 35px;
   display: flex;

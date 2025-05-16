@@ -67,9 +67,9 @@ function Menu ({id, title, description, sortBy}) {
                   style={{ transition: 'color 0.2s ease' }}
                 />
                 {openManu && (
-                    <Manu $isDarkMode={isDarkMode}>
-                      <IconBtn $isDarkMode={isDarkMode} onClick={togglePopupVisibility}><FaEdit size={20} color="blue" title="Edit" />Edit</IconBtn>
-                      <IconBtn $isDarkMode={isDarkMode} onClick={handleDelete}><FaTrash size={20} color="red" title="Delete" />Delete</IconBtn>
+                    <Manu $isdarkmode={isDarkMode ? 'true' : undefined}>
+                      <IconBtn $isdarkmode={isDarkMode ? 'true' : undefined} onClick={togglePopupVisibility}><FaEdit size={20} color="blue" title="Edit" />Edit</IconBtn>
+                      <IconBtn $isdarkmode={isDarkMode ? 'true' : undefined} onClick={handleDelete}><FaTrash size={20} color="red" title="Delete" />Delete</IconBtn>
                     </Manu>
                 )}
               </OpenManu>

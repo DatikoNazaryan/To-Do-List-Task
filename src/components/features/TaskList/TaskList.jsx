@@ -54,7 +54,7 @@ function TaskList({ sortBy , filterBy, sortTo }) {
 
     if(loading) return (
       <Spinner>
-        <SpinnerCircular size={50} color="#99ff99" />
+        <SpinnerCircular size={50} color={isDarkMode ? '#fc7d0b' : "#99ff99"} />
       </Spinner>
     );
     

@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 
 import { FaArrowUp } from 'react-icons/fa';
@@ -28,7 +27,6 @@ const ScrollToTopButton = styled.button`
 `;
 
 function ScrollToTop({ visible }) {
-  const isDarkMode = useSelector(store => store.isDarkTheme.isDarkThemeActive);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -38,7 +36,7 @@ function ScrollToTop({ visible }) {
   };
 
   return (
-    <ScrollToTopButton onClick={scrollToTop} isDarkMode={isDarkMode} className="show">
+    <ScrollToTopButton onClick={scrollToTop} className="show">
         <FaArrowUp color='#000000' />
     </ScrollToTopButton>
       

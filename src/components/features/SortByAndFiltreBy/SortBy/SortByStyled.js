@@ -11,7 +11,7 @@ export const RadioInputs = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 4px;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#444' : '#f5f7fa')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   box-sizing: border-box;
   padding: 0.25rem;
@@ -38,8 +38,8 @@ export const RadioItem = styled.span`
   border-radius: 4px;
   border: none;
   padding: 0.5rem 0;
-  color: ${({ isDarkMode }) => (isDarkMode ? '#fff' : '#000')};
-  background-color: ${({ selected, isDarkMode }) => (selected ? isDarkMode ? '#fc7d0b' : '#99ff99' : 'transparent')};
+  color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#000')};
+  background-color: ${({ selected, $isdarkmode }) => (selected ? $isdarkmode ? '#fc7d0b' : '#99ff99' : 'transparent')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   font-weight: ${({ selected }) => (selected ? 600 : 'normal')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;

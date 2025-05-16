@@ -14,15 +14,15 @@ export const StyledHeader = styled.header`
   z-index: 999;
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
   color: white;
-  background: ${({ isScrolled }) =>
-    isScrolled ? 'rgba(0, 0, 0, 0.3)' : 'transparent'};
-  backdrop-filter: ${({ isScrolled }) => (isScrolled ? 'blur(10px)' : 'none')};
-  -webkit-backdrop-filter: ${({ isScrolled }) =>
-    isScrolled ? 'blur(10px)' : 'none'};
-  box-shadow: ${({ isScrolled }) =>
-    isScrolled ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none'};
-  border-bottom: ${({ isScrolled }) =>
-    isScrolled ? '1px solid rgba(255, 255, 255, 0.2)' : 'none'};
+  background: ${({ $isscrolled }) =>
+    $isscrolled ? 'rgba(0, 0, 0, 0.3)' : 'transparent'};
+  backdrop-filter: ${({ $isscrolled }) => ($isscrolled ? 'blur(10px)' : 'none')};
+  -webkit-backdrop-filter: ${({ $isscrolled }) =>
+    $isscrolled ? 'blur(10px)' : 'none'};
+  box-shadow: ${({ $isscrolled }) =>
+    $isscrolled ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none'};
+  border-bottom: ${({ $isscrolled }) =>
+    $isscrolled ? '1px solid rgba(255, 255, 255, 0.2)' : 'none'};
 `;
 
 export const HeaderBlock = styled.div`
@@ -33,12 +33,12 @@ export const HeaderBlock = styled.div`
 `;
 
 export const Title = styled.h1`
-   color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#000')};
+   color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#000')};
 `;
 
 export const StyleButton = styled.button`
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#333' : '#fff')};
-  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#121212')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#333' : '#fff')};
+  color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#121212')};
   border-radius: 1.5rem;
   display: inline-flex;
   align-items: center;
@@ -51,7 +51,7 @@ export const StyleButton = styled.button`
   transition: background-color 0.5s ease, font-weight 0.5s ease;
 
   &:hover {
-    background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#555' : '#ddd')};
+    background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#555' : '#ddd')};
   }
     
 `;
@@ -60,7 +60,7 @@ export const ButtonDecor = styled.span`
   position: absolute;
   inset: 0;
   border-radius: 1.5rem;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#ddd')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#fc7d0b' : '#ddd')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   transform: translateX(-100%);
   transition: transform 0.3s;
@@ -79,7 +79,7 @@ export const ButtonContent = styled.span`
 export const ButtonIcon = styled.span`
   width: 48px;
   height: 100%;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#fc7d0b' : '#ddd')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#fc7d0b' : '#ddd')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   display: grid;
   place-items: center;

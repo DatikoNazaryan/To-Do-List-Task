@@ -6,8 +6,8 @@ export const StyledSelect = styled.select`
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: ${({ $isDarkMode, $isDone }) => ($isDarkMode ? $isDone ? '#fc7d0b' : '#444' : $isDone ? '#99ff99' : '#f5f7fa')};
-  color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#333')};
+  background-color: ${({ $isdarkmode, $isDone }) => ($isdarkmode ? $isDone ? '#fc7d0b' : '#444' : $isDone ? '#99ff99' : '#f5f7fa')};
+  color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#333')};
   transition: background-color 0.5s ease, font-weight 0.5s ease;
   font-size: 16px;
   cursor: pointer;
@@ -20,8 +20,8 @@ export const StyledSelect = styled.select`
   }
 
   option {
-    background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
-    color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#333')};
+    background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#444' : '#f5f7fa')};
+    color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#333')};
     transition: background-color 0.5s ease, font-weight 0.5s ease;
 
     &:hover {
@@ -29,8 +29,8 @@ export const StyledSelect = styled.select`
     }
 
     &:checked {
-     background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#444' : '#f5f7fa')};
-     color: ${({ $isDarkMode }) => ($isDarkMode ? '#fff' : '#333')};
+     background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#444' : '#f5f7fa')};
+     color: ${({ $isdarkmode }) => ($isdarkmode ? '#fff' : '#333')};
      transition: background-color 0.5s ease, font-weight 0.5s ease;
     }
   }
@@ -42,10 +42,10 @@ function FilterBy({ handleChangeFilterBy }) {
     return(
         <div>
             <h3>Status</h3>
-            <StyledSelect $isDarkMode={isDarkMode} onChange={(e) => handleChangeFilterBy(e)}>
-                <option $isDarkMode={isDarkMode} value="All">All</option>
-                <option $isDarkMode={isDarkMode} value="Pending">Pending</option>
-                <option $isDarkMode={isDarkMode} value="Done">Done</option>
+            <StyledSelect defaultValue='All' $isdarkmode={isDarkMode ? 'true' : undefined} onChange={(e) => handleChangeFilterBy(e)}>
+                <option $isdarkmode={isDarkMode ? 'true' : undefined} value="All">All</option>
+                <option $isdarkmode={isDarkMode ? 'true' : undefined} value="Pending">Pending</option>
+                <option $isdarkmode={isDarkMode ? 'true' : undefined} value="Done">Done</option>
             </StyledSelect>
         </div>
      );

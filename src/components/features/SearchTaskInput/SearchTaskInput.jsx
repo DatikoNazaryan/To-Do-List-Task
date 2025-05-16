@@ -63,7 +63,7 @@ function SearchBar () {
 
   return (
     <SearchContainer>
-      <SearchInput onChange={(e) => onChangeSearchTask(e)}  $isDarkMode={isDarkMode} type="text" placeholder="Search..." />
+      <SearchInput onChange={(e) => onChangeSearchTask(e)}  $isDarkMode={isDarkMode ? 'true' : undefined} type="text" placeholder="Search..." />
       <SearchIcon />
     </SearchContainer>
   );

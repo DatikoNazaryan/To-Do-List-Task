@@ -19,13 +19,18 @@ function Task({ title, description, id, isDone, sortBy, timeAgoDate }) {
 
     return(
         <>
-              <Tr $isDone={isDone} $isDarkMode={isDarkMode}>
+              <Tr $isDone={isDone} $isdarkmode={isDarkMode ? 'true' : undefined}>
                 <Td>{title}</Td>
                 <Td className="description">{description}</Td>
                 <Td>
-                      <StyledSelect $isDone={isDone} $isDarkMode={isDarkMode} onChange={(e) => onChangeTaskDone(e)}>
-                         <option $isDarkMode={isDarkMode} value="Done" selected={isDone ? true : false}>Done</option>
-                         <option $isDarkMode={isDarkMode} value="Pending" selected={isDone ? false : true}>Pending</option>
+                      <StyledSelect 
+                        $isDone={isDone} 
+                        $isdarkmode={isDarkMode ? 'true' : undefined} 
+                        onChange={(e) => onChangeTaskDone(e)}
+                        defaultValue={isDone ? "Done" : "Pending"}
+                      >
+                         <option $isdarkmode={isDarkMode ? 'true' : undefined} value="Done">Done</option>
+                         <option $isdarkmode={isDarkMode ? 'true' : undefined} value="Pending">Pending</option>
                       </StyledSelect>   
                 </Td>
                 <Td>

@@ -23,7 +23,7 @@ const Content = styled.div`
   overflow: hidden;
   width: 60%;
   height: 60vh;
-  background-color: ${({ $isDarkMode }) => ($isDarkMode ? '#333' : '#fff')};
+  background-color: ${({ $isdarkmode }) => ($isdarkmode ? '#333' : '#fff')};
   border-radius: 12px;
   padding: 4.8rem;
   display: flex;
@@ -51,7 +51,7 @@ const Popup = ({ children, onClose, className = '' }) => {
 
   const element = (
     <Container onClick={onClose}>
-      <Content $isDarkMode={isDarkMode} onClick={(e) => e.stopPropagation()} className={className}>
+      <Content $isdarkmode={isDarkMode ? 'true' : undefined} onClick={(e) => e.stopPropagation()} className={className}>
         {children}
         <CloseIcon onClick={onClose}>
           <FaTimes

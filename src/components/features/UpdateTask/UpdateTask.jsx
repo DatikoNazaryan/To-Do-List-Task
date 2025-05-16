@@ -54,7 +54,7 @@ function UptadeTask({ onClose, title, description, id }) {
       <Form onSubmit={(e) => handleTaskDataUpdateSubmit(e)}>
                {error.titleErr && <ErrorText>{error.titleErr}</ErrorText>}
                 <StyledInput
-                    $isDarkMode={isDarkMode}
+                    $isdarkmode={isDarkMode ? 'true' : undefined}
                     maxLength="255" 
                     type="text"
                     placeholder="Enter name" 
@@ -67,7 +67,7 @@ function UptadeTask({ onClose, title, description, id }) {
                   )} />
                 {error.descriptionErr && <ErrorText>{error.descriptionErr}</ErrorText>}
                 <StyledTextarea 
-                  $isDarkMode={isDarkMode}
+                  $isdarkmode={isDarkMode ? 'true' : undefined}
                   value={updateValues.description}
                   placeholder="Enter description" 
                   onChange={(e) => (
@@ -78,8 +78,8 @@ function UptadeTask({ onClose, title, description, id }) {
                )} 
                 />
                 <ButtonBlock>
-                  <StyledButton onClick={onClose} type="button">Cancle</StyledButton>
-                  <StyledButton $isDarkMode={isDarkMode} disabled={!updateValues.title ? true : false} type="submit">Save</StyledButton>
+                  <StyledButton $isdarkmode={isDarkMode ? 'true' : undefined} onClick={onClose} type="button">Cancle</StyledButton>
+                  <StyledButton $isdarkmode={isDarkMode ? 'true' : undefined} disabled={!updateValues.title ? true : false} type="submit">Save</StyledButton>
                 </ButtonBlock>   
           </Form>
     );

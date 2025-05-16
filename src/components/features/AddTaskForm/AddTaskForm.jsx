@@ -65,14 +65,14 @@ function addTaskForm({ onClose }) {
     return(
       <Form onSubmit={(e) => handleTaskDataSubmit(e)}>
          {error.titleErr && <ErrorText>{error.titleErr}</ErrorText>}
-          <StyledInput $isDarkMode={isDarkMode} maxLength="255" type="text" placeholder="Enter name" onChange={(e) => (
+          <StyledInput $isdarkmode={isDarkMode ? 'true' : undefined} maxLength="255" type="text" placeholder="Enter name" onChange={(e) => (
                   setValues({
                     ...values,
                     title: e.target.value,
                   })
                )} />
           {error.descriptionErr && <ErrorText>{error.descriptionErr}</ErrorText>}
-          <StyledTextarea $isDarkMode={isDarkMode} placeholder="Enter description"
+          <StyledTextarea $isdarkmode={isDarkMode ? 'true' : undefined} placeholder="Enter description"
             onChange={(e) => (
                     setValues({
                       ...values,
@@ -81,7 +81,7 @@ function addTaskForm({ onClose }) {
                  )}
           />
           <ButtonBlock>
-            <StyledButton $isDarkMode={isDarkMode} disabled={!values.title.length ? true : false} type="submit">Create</StyledButton>
+            <StyledButton $isdarkmode={isDarkMode ? 'true' : undefined} disabled={!values.title.length ? true : false} type="submit">Create</StyledButton>
           </ButtonBlock>   
        </Form>
     );

@@ -52,18 +52,18 @@ function Header() {
 
   return (
     <>
-      <StyledHeader isScrolled={scrolled} $isDarkMode={isDarkMode}>
+      <StyledHeader $isscrolled={scrolled ? 'true' : undefined} $isdarkmode={isDarkMode ? 'true' : undefined}>
         <HeaderBlock>
           <div>
-            <Title $isDarkMode={isDarkMode}>Basic Task List Template</Title>
+            <Title $isdarkmode={isDarkMode ? 'true' : undefined}>Basic Task List Template</Title>
           </div>
-            <ButtonHoverEffect onClick={togglePopupVisibility} $isDarkMode={isDarkMode}>
-               <ButtonDecor $isDarkMode={isDarkMode} />
+            <ButtonHoverEffect onClick={togglePopupVisibility} $isdarkmode={isDarkMode ? 'true' : undefined}>
+               <ButtonDecor $isdarkmode={isDarkMode ? 'true' : undefined} />
             <ButtonContent>
-              <ButtonIcon $isDarkMode={isDarkMode}>
+              <ButtonIcon $isdarkmode={isDarkMode ? 'true' : undefined}>
                 <FaPlus size={20} color={isDarkMode ? '#fff' : '#121212'} />
               </ButtonIcon>
-              <ButtonText $isDarkMode={isDarkMode}>Add Task</ButtonText>
+              <ButtonText $isdarkmode={isDarkMode ? 'true' : undefined}>Add Task</ButtonText>
             </ButtonContent>
             </ButtonHoverEffect>
         </HeaderBlock>
